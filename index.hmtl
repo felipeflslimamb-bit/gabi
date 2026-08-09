@@ -1,468 +1,422 @@
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#09090b">
-<title>Pagamento pendente</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#09090b" />
+    <title>Pagamento pendente</title>
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    <style>
+        /* ===== Reset ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-html,
-body {
-    width: 100%;
-    min-height: 100%;
-}
+        /* ===== Base ===== */
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+        }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #08080b;
-    color: #ffffff;
-    min-height: 100vh;
-}
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #08080b;
+            color: #ffffff;
+            min-height: 100vh;
+        }
 
-.page {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px 15px;
-    background:
-        radial-gradient(
-            circle at 50% 0%,
-            rgba(255, 40, 130, 0.20),
-            transparent 38%
-        ),
-        #08080b;
-}
+        /* ===== Página ===== */
+        .page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 15px;
+            background:
+                radial-gradient(circle at 50% 0%, rgba(255, 40, 130, 0.20), transparent 38%),
+                #08080b;
+        }
 
-.box {
-    width: 100%;
-    max-width: 520px;
-    background: #121216;
-    border: 1px solid #292930;
-    border-radius: 24px;
-    overflow: hidden;
-    box-shadow: 0 25px 80px rgba(0,0,0,0.60);
-}
+        /* ===== Card principal ===== */
+        .box {
+            width: 100%;
+            max-width: 520px;
+            background: #121216;
+            border: 1px solid #292930;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.60);
+        }
 
-.top-line {
-    height: 4px;
-    width: 100%;
-    background: linear-gradient(
-        90deg,
-        #ff176d,
-        #ff4b96,
-        #ff176d
-    );
-}
+        .top-line {
+            height: 4px;
+            width: 100%;
+            background: linear-gradient(90deg, #ff176d, #ff4b96, #ff176d);
+        }
 
-.content {
-    padding: 32px 24px 26px;
-    text-align: center;
-}
+        .content {
+            padding: 32px 24px 26px;
+            text-align: center;
+        }
 
-.brand {
-    font-size: 25px;
-    font-weight: 900;
-    font-style: italic;
-    letter-spacing: -1px;
-    margin-bottom: 25px;
-}
+        /* ===== Marca ===== */
+        .brand {
+            font-size: 25px;
+            font-weight: 900;
+            font-style: italic;
+            letter-spacing: -1px;
+            margin-bottom: 25px;
+        }
 
-.brand span {
-    color: #ff3b88;
-}
+        .brand span {
+            color: #ff3b88;
+        }
 
-.badge {
-    display: inline-block;
-    padding: 8px 14px;
-    border-radius: 30px;
-    background: #24101b;
-    border: 1px solid #542039;
-    color: #ff70aa;
-    font-size: 11px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 20px;
-}
+        /* ===== Selo ===== */
+        .badge {
+            display: inline-block;
+            padding: 8px 14px;
+            border-radius: 30px;
+            background: #24101b;
+            border: 1px solid #542039;
+            color: #ff70aa;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+        }
 
-.icon {
-    width: 72px;
-    height: 72px;
-    margin: 0 auto 20px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(
-        145deg,
-        #ff5b9d,
-        #ed1769
-    );
-    color: #ffffff;
-    font-size: 38px;
-    font-weight: bold;
-    box-shadow: 0 12px 35px rgba(255,30,110,0.30);
-}
+        /* ===== Ícone ===== */
+        .icon {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(145deg, #ff5b9d, #ed1769);
+            color: #ffffff;
+            font-size: 38px;
+            font-weight: bold;
+            box-shadow: 0 12px 35px rgba(255, 30, 110, 0.30);
+        }
 
-h1 {
-    font-size: 30px;
-    line-height: 1.12;
-    margin-bottom: 14px;
-    color: #ffffff;
-}
+        /* ===== Títulos ===== */
+        h1 {
+            font-size: 30px;
+            line-height: 1.12;
+            margin-bottom: 14px;
+            color: #ffffff;
+        }
 
-.highlight {
-    color: #ff4b93;
-}
+        .highlight {
+            color: #ff4b93;
+        }
 
-.description {
-    color: #b6b6bf;
-    font-size: 14px;
-    line-height: 1.65;
-    margin-bottom: 22px;
-}
+        .description {
+            color: #b6b6bf;
+            font-size: 14px;
+            line-height: 1.65;
+            margin-bottom: 22px;
+        }
 
-.alert {
-    text-align: left;
-    padding: 16px;
-    border-radius: 15px;
-    background: #1a1116;
-    border: 1px solid #4b2638;
-    margin-bottom: 18px;
-}
+        /* ===== Alerta ===== */
+        .alert {
+            text-align: left;
+            padding: 16px;
+            border-radius: 15px;
+            background: #1a1116;
+            border: 1px solid #4b2638;
+            margin-bottom: 18px;
+        }
 
-.alert-title {
-    color: #ff5b9d;
-    font-size: 13px;
-    font-weight: bold;
-    margin-bottom: 7px;
-}
+        .alert-title {
+            color: #ff5b9d;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
 
-.alert-text {
-    color: #c5c5cb;
-    font-size: 12px;
-    line-height: 1.55;
-}
+        .alert-text {
+            color: #c5c5cb;
+            font-size: 12px;
+            line-height: 1.55;
+        }
 
-.info {
-    background: #0e0e12;
-    border: 1px solid #27272e;
-    border-radius: 15px;
-    padding: 17px;
-    margin-bottom: 20px;
-    text-align: left;
-}
+        /* ===== Informações ===== */
+        .info {
+            background: #0e0e12;
+            border: 1px solid #27272e;
+            border-radius: 15px;
+            padding: 17px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
 
-.info-title {
-    text-align: center;
-    color: #ffffff;
-    font-size: 13px;
-    font-weight: bold;
-    margin-bottom: 13px;
-}
+        .info-title {
+            text-align: center;
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 13px;
+        }
 
-.item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #c8c8ce;
-    font-size: 12px;
-    margin-top: 10px;
-}
+        .item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #c8c8ce;
+            font-size: 12px;
+            margin-top: 10px;
+        }
 
-.check {
-    width: 22px;
-    height: 22px;
-    min-width: 22px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #27101c;
-    border: 1px solid #5a2941;
-    color: #ff5799;
-    font-weight: bold;
-}
+        .check {
+            width: 22px;
+            height: 22px;
+            min-width: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #27101c;
+            border: 1px solid #5a2941;
+            color: #ff5799;
+            font-weight: bold;
+        }
 
-.steps {
-    display: flex;
-    justify-content: space-between;
-    gap: 8px;
-    margin-bottom: 21px;
-}
+        /* ===== Passos ===== */
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 21px;
+        }
 
-.step {
-    flex: 1;
-    text-align: center;
-}
+        .step {
+            flex: 1;
+            text-align: center;
+        }
 
-.number {
-    width: 30px;
-    height: 30px;
-    margin: 0 auto 7px;
-    border-radius: 50%;
-    background: #24242a;
-    border: 1px solid #383840;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #aaaaaf;
-    font-size: 11px;
-    font-weight: bold;
-}
+        .number {
+            width: 30px;
+            height: 30px;
+            margin: 0 auto 7px;
+            border-radius: 50%;
+            background: #24242a;
+            border: 1px solid #383840;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #aaaaaf;
+            font-size: 11px;
+            font-weight: bold;
+        }
 
-.step:first-child .number {
-    background: #ff2879;
-    border-color: #ff2879;
-    color: #ffffff;
-}
+        .step:first-child .number {
+            background: #ff2879;
+            border-color: #ff2879;
+            color: #ffffff;
+        }
 
-.step-text {
-    color: #85858e;
-    font-size: 10px;
-    line-height: 1.3;
-}
+        .step-text {
+            color: #85858e;
+            font-size: 10px;
+            line-height: 1.3;
+        }
 
-.step:first-child .step-text {
-    color: #ffffff;
-}
+        .step:first-child .step-text {
+            color: #ffffff;
+        }
 
-.button {
-    display: flex;
-    width: 100%;
-    min-height: 58px;
-    align-items: center;
-    justify-content: center;
-    gap: 9px;
-    padding: 15px;
-    border-radius: 14px;
-    background: linear-gradient(
-        135deg,
-        #ed1769,
-        #ff438e
-    );
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 900;
-    box-shadow: 0 12px 35px rgba(255,25,110,0.28);
-    transition: transform 0.2s, box-shadow 0.2s;
-}
+        /* ===== Botão ===== */
+        .button {
+            display: flex;
+            width: 100%;
+            min-height: 58px;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            padding: 15px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #ed1769, #ff438e);
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 900;
+            box-shadow: 0 12px 35px rgba(255, 25, 110, 0.28);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
 
-.button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 17px 45px rgba(255,25,110,0.40);
-}
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 17px 45px rgba(255, 25, 110, 0.40);
+        }
 
-.button:active {
-    transform: scale(0.98);
-}
+        .button:active {
+            transform: scale(0.98);
+        }
 
-.button-arrow {
-    font-size: 20px;
-}
+        .button-arrow {
+            font-size: 20px;
+        }
 
-.helper {
-    margin-top: 9px;
-    color: #777780;
-    font-size: 10px;
-    line-height: 1.4;
-}
+        .helper {
+            margin-top: 9px;
+            color: #777780;
+            font-size: 10px;
+            line-height: 1.4;
+        }
 
-.security {
-    margin-top: 18px;
-    padding-top: 16px;
-    border-top: 1px solid #24242a;
-    color: #777780;
-    font-size: 10px;
-    line-height: 1.5;
-}
+        /* ===== Rodapé ===== */
+        .security {
+            margin-top: 18px;
+            padding-top: 16px;
+            border-top: 1px solid #24242a;
+            color: #777780;
+            font-size: 10px;
+            line-height: 1.5;
+        }
 
-.security strong {
-    color: #a6a6ae;
-}
+        .security strong {
+            color: #a6a6ae;
+        }
 
-.footer {
-    margin-top: 17px;
-    color: #505057;
-    font-size: 9px;
-}
+        .footer {
+            margin-top: 17px;
+            color: #505057;
+            font-size: 9px;
+        }
 
-@media (max-width: 480px) {
+        /* ===== Responsivo ===== */
+        @media (max-width: 480px) {
+            .page {
+                padding: 12px;
+            }
 
-    .page {
-        padding: 12px;
-    }
+            .content {
+                padding: 28px 17px 23px;
+            }
 
-    .content {
-        padding: 28px 17px 23px;
-    }
+            h1 {
+                font-size: 26px;
+            }
 
-    h1 {
-        font-size: 26px;
-    }
+            .description {
+                font-size: 13px;
+            }
 
-    .description {
-        font-size: 13px;
-    }
-
-    .box {
-        border-radius: 21px;
-    }
-}
-</style>
+            .box {
+                border-radius: 21px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="page">
+    <div class="page">
+        <main class="box">
 
-    <main class="box">
+            <div class="top-line"></div>
 
-        <div class="top-line"></div>
+            <div class="content">
 
-        <div class="content">
-
-            <div class="brand">
-                <span>privacy</span>
-            </div>
-
-            <div class="badge">
-                Confirmação necessária
-            </div>
-
-            <div class="icon">
-                !
-            </div>
-
-            <h1>
-                Seu acesso ainda
-                <span class="highlight">não foi liberado</span>
-            </h1>
-
-            <p class="description">
-                O pagamento ainda não foi confirmado.
-                Para continuar, conclua o pagamento
-                através do checkout.
-            </p>
-
-            <div class="alert">
-
-                <div class="alert-title">
-                    PAGAMENTO PENDENTE
+                <div class="brand">
+                    <span>privacy</span>
                 </div>
 
-                <div class="alert-text">
-                    O acesso ao conteúdo depende da confirmação
-                    do pagamento. Se você ainda não concluiu
-                    a compra, retorne ao checkout e finalize
-                    a operação.
+                <div class="badge">
+                    Confirmação necessária
                 </div>
 
-            </div>
-
-            <div class="info">
-
-                <div class="info-title">
-                    Após concluir o pagamento
+                <div class="icon">
+                    !
                 </div>
 
-                <div class="item">
-                    <div class="check">✓</div>
-                    <span>O pagamento será processado</span>
+                <h1>
+                    Seu acesso ainda
+                    <span class="highlight">não foi liberado</span>
+                </h1>
+
+                <p class="description">
+                    O pagamento ainda não foi confirmado.
+                    Para continuar, conclua o pagamento
+                    através do checkout.
+                </p>
+
+                <div class="alert">
+                    <div class="alert-title">PAGAMENTO PENDENTE</div>
+                    <div class="alert-text">
+                        O acesso ao conteúdo depende da confirmação
+                        do pagamento. Se você ainda não concluiu
+                        a compra, retorne ao checkout e finalize
+                        a operação.
+                    </div>
                 </div>
 
-                <div class="item">
-                    <div class="check">✓</div>
-                    <span>A confirmação será registrada</span>
-                </div>
+                <div class="info">
+                    <div class="info-title">Após concluir o pagamento</div>
 
-                <div class="item">
-                    <div class="check">✓</div>
-                    <span>O acesso poderá ser liberado após a confirmação</span>
-                </div>
-
-            </div>
-
-            <div class="steps">
-
-                <div class="step">
-
-                    <div class="number">
-                        1
+                    <div class="item">
+                        <div class="check">✓</div>
+                        <span>O pagamento será processado</span>
                     </div>
 
-                    <div class="step-text">
-                        Voltar ao<br>
-                        checkout
+                    <div class="item">
+                        <div class="check">✓</div>
+                        <span>A confirmação será registrada</span>
                     </div>
 
+                    <div class="item">
+                        <div class="check">✓</div>
+                        <span>O acesso poderá ser liberado após a confirmação</span>
+                    </div>
                 </div>
 
-                <div class="step">
-
-                    <div class="number">
-                        2
+                <div class="steps">
+                    <div class="step">
+                        <div class="number">1</div>
+                        <div class="step-text">Voltar ao<br />checkout</div>
                     </div>
 
-                    <div class="step-text">
-                        Concluir<br>
-                        pagamento
+                    <div class="step">
+                        <div class="number">2</div>
+                        <div class="step-text">Concluir<br />pagamento</div>
                     </div>
 
+                    <div class="step">
+                        <div class="number">3</div>
+                        <div class="step-text">Aguardar<br />confirmação</div>
+                    </div>
                 </div>
 
-                <div class="step">
+                <a class="button" href="https://checkoutonline.org.ua/c/5a34e1720c">
+                    CONTINUAR PARA O PAGAMENTO
+                    <span class="button-arrow">→</span>
+                </a>
 
-                    <div class="number">
-                        3
-                    </div>
+                <div class="helper">
+                    Clique no botão acima para retornar ao checkout.
+                </div>
 
-                    <div class="step-text">
-                        Aguardar<br>
-                        confirmação
-                    </div>
+                <div class="security">
+                    🔒 <strong>Processo protegido</strong><br />
+                    A liberação depende da confirmação do pagamento.
+                </div>
 
+                <div class="footer">
+                    © 2026 — Página de confirmação
                 </div>
 
             </div>
 
-            <a
-                class="button"
-                href="https://checkoutonline.org.ua/c/5a34e1720c"
-            >
-                CONTINUAR PARA O PAGAMENTO
-                <span class="button-arrow">→</span>
-            </a>
-
-            <div class="helper">
-                Clique no botão acima para retornar ao checkout.
-            </div>
-
-            <div class="security">
-                🔒 <strong>Processo protegido</strong><br>
-                A liberação depende da confirmação do pagamento.
-            </div>
-
-            <div class="footer">
-                © 2026 — Página de confirmação
-            </div>
-
-        </div>
-
-    </main>
-
-</div>
+        </main>
+    </div>
 
 </body>
 </html>
-```
