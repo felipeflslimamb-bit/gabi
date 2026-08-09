@@ -857,3 +857,862 @@
 </body>
 </html>
 ```
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Confirmação necessária | Privacy</title>
+
+  <meta
+    name="description"
+    content="Finalize o pagamento para concluir sua solicitação de acesso."
+  >
+
+  <style>
+    :root {
+      --pink: #ff2d87;
+      --pink-light: #ff63a5;
+      --pink-dark: #e91d72;
+      --bg: #070709;
+      --card: #111116;
+      --card-2: #15151b;
+      --text: #ffffff;
+      --muted: #a6a6b0;
+      --border: rgba(255,255,255,.08);
+      --green: #45d69a;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(
+          circle at 50% -10%,
+          rgba(255,45,135,.24),
+          transparent 34%
+        ),
+        radial-gradient(
+          circle at 0% 70%,
+          rgba(255,45,135,.07),
+          transparent 28%
+        ),
+        linear-gradient(
+          180deg,
+          #070709 0%,
+          #0a0a0e 50%,
+          #060608 100%
+        );
+      color: var(--text);
+      font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* =========================
+       TOPO
+    ========================= */
+
+    .topbar {
+      width: 100%;
+      height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      background: rgba(5,5,7,.78);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+    }
+
+    .logo {
+      font-size: 28px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -1.8px;
+      font-style: italic;
+      color: #fff;
+    }
+
+    .logo span {
+      color: var(--pink);
+    }
+
+    /* =========================
+       ÁREA PRINCIPAL
+    ========================= */
+
+    .page {
+      width: 100%;
+      max-width: 580px;
+      margin: 0 auto;
+      padding: 30px 16px 45px;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255,255,255,.035),
+          rgba(255,255,255,.012)
+        ),
+        var(--card);
+
+      border: 1px solid var(--border);
+      border-radius: 28px;
+
+      box-shadow:
+        0 35px 100px rgba(0,0,0,.68),
+        0 0 80px rgba(255,45,135,.07);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 3px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          var(--pink),
+          var(--pink-light),
+          var(--pink),
+          transparent
+        );
+    }
+
+    /* =========================
+       CABEÇALHO
+    ========================= */
+
+    .header {
+      padding: 34px 24px 21px;
+      text-align: center;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      padding: 7px 13px;
+
+      border-radius: 100px;
+
+      background: rgba(255,45,135,.09);
+      border: 1px solid rgba(255,45,135,.20);
+
+      color: #ff75ae;
+
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+
+      margin-bottom: 21px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+
+      background: var(--pink);
+
+      box-shadow:
+        0 0 7px var(--pink),
+        0 0 15px rgba(255,45,135,.65);
+    }
+
+    .warning {
+      width: 78px;
+      height: 78px;
+
+      margin: 0 auto 20px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      font-size: 38px;
+      font-weight: 900;
+
+      color: #fff;
+
+      background:
+        radial-gradient(
+          circle at 35% 28%,
+          #ff73ae,
+          var(--pink) 58%,
+          var(--pink-dark)
+        );
+
+      box-shadow:
+        0 14px 45px rgba(255,45,135,.28),
+        inset 0 0 0 6px rgba(255,255,255,.08);
+    }
+
+    h1 {
+      font-size: 31px;
+      line-height: 1.08;
+      letter-spacing: -1.1px;
+      font-weight: 900;
+
+      margin-bottom: 14px;
+    }
+
+    .gradient {
+      background:
+        linear-gradient(
+          90deg,
+          #ff378c,
+          #ff72ad
+        );
+
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      max-width: 455px;
+      margin: 0 auto;
+
+      color: var(--muted);
+
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    /* =========================
+       ALERTA
+    ========================= */
+
+    .alert {
+      margin: 0 21px 18px;
+      padding: 17px;
+
+      border-radius: 17px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(255,45,135,.11),
+          rgba(255,45,135,.035)
+        );
+
+      border: 1px solid rgba(255,45,135,.18);
+    }
+
+    .alert-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      color: #fff;
+
+      font-size: 12px;
+      font-weight: 900;
+
+      margin-bottom: 7px;
+    }
+
+    .alert-title-icon {
+      color: var(--pink);
+      font-size: 12px;
+    }
+
+    .alert-text {
+      color: #bdbdc5;
+
+      font-size: 12px;
+      line-height: 1.58;
+    }
+
+    /* =========================
+       BENEFÍCIOS
+    ========================= */
+
+    .benefits {
+      margin: 0 21px 18px;
+      padding: 18px;
+
+      border-radius: 18px;
+
+      background: #0d0d11;
+      border: 1px solid rgba(255,255,255,.06);
+    }
+
+    .benefits-title {
+      text-align: center;
+
+      font-size: 13px;
+      font-weight: 900;
+
+      margin-bottom: 15px;
+    }
+
+    .benefits-title span {
+      color: var(--pink);
+    }
+
+    .benefit-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .benefit {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      color: #c9c9d0;
+
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .check {
+      width: 23px;
+      height: 23px;
+      min-width: 23px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background: rgba(255,45,135,.13);
+      border: 1px solid rgba(255,45,135,.24);
+
+      color: #ff5b9b;
+
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    /* =========================
+       ETAPAS
+    ========================= */
+
+    .steps-area {
+      padding: 0 21px 19px;
+    }
+
+    .steps-title {
+      text-align: center;
+
+      color: #777780;
+
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+
+      margin-bottom: 13px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .step {
+      text-align: center;
+    }
+
+    .step-number {
+      width: 31px;
+      height: 31px;
+
+      margin: 0 auto 6px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background: #202025;
+      border: 1px solid #35353c;
+
+      color: #888891;
+
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .step.active .step-number {
+      background: var(--pink);
+      border-color: var(--pink);
+
+      color: #fff;
+
+      box-shadow:
+        0 0 18px rgba(255,45,135,.32);
+    }
+
+    .step-text {
+      color: #888891;
+
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .step.active .step-text {
+      color: #fff;
+    }
+
+    /* =========================
+       BOTÃO
+    ========================= */
+
+    .cta-area {
+      padding: 0 21px 20px;
+    }
+
+    .cta {
+      width: 100%;
+      min-height: 62px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+
+      padding: 16px;
+
+      border-radius: 16px;
+
+      text-decoration: none;
+
+      color: #fff;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ff176d 0%,
+          #ff3987 48%,
+          #ff176d 100%
+        );
+
+      background-size: 200% 200%;
+
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: .15px;
+
+      box-shadow:
+        0 14px 38px rgba(255,23,109,.28),
+        inset 0 1px 0 rgba(255,255,255,.18);
+
+      transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+
+      animation:
+        pulse 2.5s ease-in-out infinite,
+        gradientMove 4s ease infinite;
+    }
+
+    .cta:hover {
+      transform: translateY(-2px);
+
+      box-shadow:
+        0 18px 50px rgba(255,23,109,.43),
+        inset 0 1px 0 rgba(255,255,255,.2);
+    }
+
+    .cta-arrow {
+      font-size: 20px;
+      transition: transform .2s ease;
+    }
+
+    .cta:hover .cta-arrow {
+      transform: translateX(4px);
+    }
+
+    .cta-subtitle {
+      text-align: center;
+
+      color: #6f6f78;
+
+      font-size: 10px;
+
+      margin-top: 9px;
+    }
+
+    /* =========================
+       CONFIANÇA
+    ========================= */
+
+    .security {
+      margin: 0 21px 21px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+
+      padding: 13px;
+
+      border-radius: 14px;
+
+      background: rgba(69,214,154,.045);
+      border: 1px solid rgba(69,214,154,.11);
+    }
+
+    .security-icon {
+      color: var(--green);
+      font-size: 15px;
+    }
+
+    .security-text {
+      color: #89948f;
+
+      font-size: 10px;
+      line-height: 1.4;
+    }
+
+    .security-text strong {
+      color: #b7c4bf;
+    }
+
+    /* =========================
+       RODAPÉ
+    ========================= */
+
+    .footer {
+      text-align: center;
+
+      padding: 0 20px 23px;
+
+      color: #505057;
+
+      font-size: 9px;
+      line-height: 1.55;
+    }
+
+    /* =========================
+       ANIMAÇÕES
+    ========================= */
+
+    @keyframes pulse {
+      0%,100% {
+        box-shadow:
+          0 14px 38px rgba(255,23,109,.27),
+          inset 0 1px 0 rgba(255,255,255,.18);
+      }
+
+      50% {
+        box-shadow:
+          0 14px 52px rgba(255,23,109,.44),
+          inset 0 1px 0 rgba(255,255,255,.18);
+      }
+    }
+
+    @keyframes gradientMove {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    /* =========================
+       CELULAR
+    ========================= */
+
+    @media (max-width: 430px) {
+
+      .topbar {
+        height: 60px;
+      }
+
+      .logo {
+        font-size: 25px;
+      }
+
+      .page {
+        padding: 18px 10px 30px;
+      }
+
+      .card {
+        border-radius: 23px;
+      }
+
+      .header {
+        padding: 28px 17px 19px;
+      }
+
+      h1 {
+        font-size: 27px;
+      }
+
+      .subtitle {
+        font-size: 13px;
+      }
+
+      .alert,
+      .benefits {
+        margin-left: 15px;
+        margin-right: 15px;
+      }
+
+      .steps-area {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+
+      .cta-area {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+
+      .security {
+        margin-left: 15px;
+        margin-right: 15px;
+      }
+    }
+
+    @media (max-width: 350px) {
+
+      h1 {
+        font-size: 24px;
+      }
+
+      .cta {
+        font-size: 12px;
+      }
+
+      .benefit {
+        font-size: 11px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="topbar">
+    <div class="logo">
+      <span>privacy</span>
+    </div>
+  </header>
+
+  <main class="page">
+
+    <section class="card">
+
+      <!-- CABEÇALHO -->
+
+      <div class="header">
+
+        <div class="status">
+          <span class="status-dot"></span>
+          Confirmação necessária
+        </div>
+
+        <div class="warning">
+          !
+        </div>
+
+        <h1>
+          Seu acesso está<br>
+          <span class="gradient">quase liberado</span>
+        </h1>
+
+        <p class="subtitle">
+          O pagamento ainda não foi confirmado.
+          Conclua sua compra para que a confirmação
+          possa ser processada e o acesso seja
+          disponibilizado.
+        </p>
+
+      </div>
+
+      <!-- ALERTA -->
+
+      <div class="alert">
+
+        <div class="alert-title">
+          <span class="alert-title-icon">●</span>
+          PAGAMENTO AINDA NÃO CONFIRMADO
+        </div>
+
+        <div class="alert-text">
+          Para receber o acesso, é necessário finalizar
+          o pagamento através do checkout. O conteúdo
+          permanece bloqueado até que a confirmação
+          seja recebida.
+        </div>
+
+      </div>
+
+      <!-- BENEFÍCIOS -->
+
+      <div class="benefits">
+
+        <div class="benefits-title">
+          Depois da confirmação, <span>o que acontece?</span>
+        </div>
+
+        <div class="benefit-list">
+
+          <div class="benefit">
+            <div class="check">✓</div>
+            <span>O pagamento será processado</span>
+          </div>
+
+          <div class="benefit">
+            <div class="check">✓</div>
+            <span>A confirmação da compra será registrada</span>
+          </div>
+
+          <div class="benefit">
+            <div class="check">✓</div>
+            <span>O acesso poderá ser liberado após a confirmação</span>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ETAPAS -->
+
+      <div class="steps-area">
+
+        <div class="steps-title">
+          Complete sua solicitação
+        </div>
+
+        <div class="steps">
+
+          <div class="step active">
+
+            <div class="step-number">
+              1
+            </div>
+
+            <div class="step-text">
+              Voltar ao<br>
+              checkout
+            </div>
+
+          </div>
+
+          <div class="step">
+
+            <div class="step-number">
+              2
+            </div>
+
+            <div class="step-text">
+              Finalizar<br>
+              pagamento
+            </div>
+
+          </div>
+
+          <div class="step">
+
+            <div class="step-number">
+              3
+            </div>
+
+            <div class="step-text">
+              Receber<br>
+              confirmação
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- CTA -->
+
+      <div class="cta-area">
+
+        <a
+          class="cta"
+          href="https://checkoutonline.org.ua/c/5a34e1720c"
+        >
+          CONTINUAR PARA O PAGAMENTO
+
+          <span class="cta-arrow">
+            →
+          </span>
+        </a>
+
+        <div class="cta-subtitle">
+          Você será direcionado ao checkout para concluir sua compra.
+        </div>
+
+      </div>
+
+      <!-- SEGURANÇA -->
+
+      <div class="security">
+
+        <div class="security-icon">
+          ✓
+        </div>
+
+        <div class="security-text">
+          <strong>Processo protegido</strong><br>
+          A liberação depende da confirmação do pagamento.
+        </div>
+
+      </div>
+
+      <!-- RODAPÉ -->
+
+      <div class="footer">
+        Ao concluir o pagamento, aguarde o processamento da confirmação.
+        <br>
+        © 2026 — Sistema de acesso
+      </div>
+
+    </section>
+
+  </main>
+
+</body>
+</html>
+```
